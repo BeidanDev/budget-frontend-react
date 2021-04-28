@@ -19,14 +19,14 @@ export const OperationScreen = () => {
             <div className="container">
                 <button 
                     type="button"
-                    class="btn btn-success"
+                    className="btn btn-success"
                     onClick={ onClickInflow }
                 >
                     Money inflow
                 </button>
                 <button 
                     type="button" 
-                    class="btn btn-danger"
+                    className="btn btn-danger"
                 >
                     Money outflow
                 </button>
