@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 
 import { uiCloseModalInflow } from '../../actions/ui';
+import { operationAddNew, operationClearActive, operationUpdated } from '../../actions/operations';
 
 const customStyles = {
     content : {
@@ -20,21 +21,32 @@ Modal.setAppElement('#root');
 
 const now = moment().minutes(0).seconds(0).add(1, 'hours'); // 3:00:00
 
+const initOperation = {
+    concept: 'Job',
+    amount: '45000',
+    date: now.toDate() 
+}
+
 export const OperationInflowModal = () => {
     const { modalOpenInflow } = useSelector(state => state.ui);
+    const { activeOperation } = useSelector(state => state.operation);
     const dispatch = useDispatch();
 
     const [dateStart, setDateStart] = useState(now.toDate());
     const [conceptValid, setConceptValid] = useState(true);
     const [amountValid, setAmountValid] = useState(true);
 
-    const [formValues, setFormValues] = useState({
-        concept: 'Job',
-        amount: '45000',
-        date: now.toDate() 
-    });
+    const [formValues, setFormValues] = useState(initOperation);
 
     const { concept, amount } = formValues;
+
+    useEffect(() => {
+        if(activeOperation) {
+            setFormValues(activeOperation);
+        } else {
+            setFormValues(initOperation);
+        }
+    }, [activeOperation, setFormValues]);
 
     const handleInputChange = ({ target }) => {
         setFormValues({
@@ -45,6 +57,8 @@ export const OperationInflowModal = () => {
 
     const closeModal = () => {
         dispatch(uiCloseModalInflow());
+        dispatch(operationClearActive());
+        setFormValues(initOperation);
     }
 
     const handleStartDateChange = (e) => {
@@ -66,7 +80,18 @@ export const OperationInflowModal = () => {
             return setAmountValid(false);
         }
         
-        // Realizar grabación
+        if(activeOperation) {
+            dispatch(operationUpdated(formValues));
+        } else {
+            dispatch(operationAddNew({
+                ...formValues,
+                id: new Date().getTime(),
+                user: {
+                    id: '1',
+                    name: 'Franco'
+                }
+            }));
+        }
 
         setConceptValid(true);
         setAmountValid(true);
@@ -82,7 +107,7 @@ export const OperationInflowModal = () => {
             className="modal"
             overlayClassName="modal-fondo"
         >
-            <h1>New money inflow</h1>
+            <h1>{ (activeOperation)? 'Edit money inflow': 'New money inflow' }</h1>
             <hr />
             <form 
                 className="container"
