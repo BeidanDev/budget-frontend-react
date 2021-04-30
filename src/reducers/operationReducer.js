@@ -1,17 +1,22 @@
-import moment from "moment";
+// import moment from "moment";
 import { types } from "../types/types";
 
+// const initialState = {
+//     operations: [{
+//         id: new Date().getTime(),
+//         concept: 'Job',
+//         amount: '45000',
+//         date: moment().toDate(),
+//         user: {
+//             id: '1',
+//             name: 'Franco'
+//         }
+//     }],
+//     activeOperation: null
+// };
+
 const initialState = {
-    operations: [{
-        id: new Date().getTime(),
-        concept: 'Job',
-        amount: '45000',
-        date: moment().toDate(),
-        user: {
-            id: '1',
-            name: 'Franco'
-        }
-    }],
+    operations: [],
     activeOperation: null
 };
 
@@ -54,6 +59,17 @@ export const operationReducer = (state = initialState, action) => {
                 ),
                 activeOperation: null
             }
+
+        case types.operationLoaded:
+            return {
+                ...state,
+                operations: [...action.payload]
+            }
+        
+            case types.operationLogout:
+                return {
+                    ...initialState
+                }
 
         default:
             return state;

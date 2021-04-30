@@ -1,27 +1,43 @@
 import moment from 'moment';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { operationSetActive } from '../../actions/operations';
+import { operationSetActive, operationStartLoading } from '../../actions/operations';
 import { uiOpenModalInflow } from '../../actions/ui';
 import { AddNewOperation } from '../ui/AddNewOperation';
 import { Navbar } from '../ui/Navbar';
+import { Table } from '../ui/Table';
 import { OperationInflowModal } from './OperationInflowModal';
 import { OperationOutflowModal } from './OperationOutflowModal';
 
-const operations = [{
-    concept: 'Job',
-    amount: '45000',
-    date: moment().toDate(),
-    user: {
-        id: '1',
-        name: 'Franco'
-    }
-}];
+// const operations = [
+//     {
+//         id: '1',
+//         concept: 'Job',
+//         amount: '45000',
+//         date: moment().toDate()
+//     },
+//     {
+//         id: '2',
+//         concept: 'Job',
+//         amount: '45000',
+//         date: moment().toDate()
+//     },
+//     {
+//         id: '3',
+//         concept: 'Job',
+//         amount: '45000',
+//         date: moment().toDate()
+//     }
+// ];
 
 export const OperationScreen = () => {
     const dispatch = useDispatch();
     const { operations, activeOperation } = useSelector(state => state.operation);
+
+    useEffect(() => {
+        dispatch(operationStartLoading());
+    }, [dispatch]);
 
     const onClickInflow = (e) => {
         dispatch(uiOpenModalInflow());
@@ -36,58 +52,19 @@ export const OperationScreen = () => {
         <div>
             <Navbar />
             <div className="container">
-                {/* <button 
-                    type="button"
-                    className="btn btn-success"
-                    onClick={ onClickInflow }
-                >
-                    Money inflow
-                </button> */}
                 <AddNewOperation 
-                    onClickInflow={ onClickInflow }
-                    onSelectOperation={ onSelectOperation }
+                        onClickInflow={ onClickInflow }
+                        onSelectOperation={ onSelectOperation }
                 />
-                <button 
-                    type="button" 
-                    className="btn btn-danger"
+                {/* <button
+                    className="btn btn-danger mb-2"
                 >
                     Money outflow
-                </button>
-                <div className="table-responsive">
-                    <table className="table table-bordered">
-                        <thead className="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                </button> */}
+                <Table />
+                <OperationInflowModal />
+                <OperationOutflowModal />
             </div>
-            <OperationInflowModal />
-            <OperationOutflowModal />
         </div>
     )
 }

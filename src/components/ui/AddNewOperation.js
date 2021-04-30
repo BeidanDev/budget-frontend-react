@@ -10,9 +10,8 @@ export const AddNewOperation = () => {
     }
 
     return (
-        <button 
-            type="button"
-            className="btn btn-success"
+        <button
+            className="btn btn-success mb-2 mr-2"
             onClick={ handleClicNew }
         >
             Money inflow

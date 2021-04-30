@@ -5,7 +5,7 @@ import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 
 import { uiCloseModalInflow } from '../../actions/ui';
-import { operationAddNew, operationClearActive, operationUpdated } from '../../actions/operations';
+import { operationClearActive, operationStartAddNew, operationStartUpdate } from '../../actions/operations';
 
 const customStyles = {
     content : {
@@ -81,16 +81,9 @@ export const OperationInflowModal = () => {
         }
         
         if(activeOperation) {
-            dispatch(operationUpdated(formValues));
+            dispatch(operationStartUpdate(formValues));
         } else {
-            dispatch(operationAddNew({
-                ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    id: '1',
-                    name: 'Franco'
-                }
-            }));
+            dispatch(operationStartAddNew(formValues));
         }
 
         setConceptValid(true);
