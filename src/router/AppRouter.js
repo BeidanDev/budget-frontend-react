@@ -8,6 +8,7 @@ import {
 
 import { startChecking } from '../actions/auth';
 import { LoginScreen } from '../components/auth/LoginScreen';
+import { CategoryScreen } from '../components/category/CategoryScreen';
 import { OperationScreen } from '../components/operation/OperationScreen';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
@@ -39,6 +40,13 @@ export const AppRouter = () => {
                         exact
                         path="/"
                         component={ OperationScreen }
+                        isAuthenticated={ !!uid }
+                    />
+
+                    <PrivateRoute
+                        exact
+                        path="/category"
+                        component={ CategoryScreen }
                         isAuthenticated={ !!uid }
                     />
 
