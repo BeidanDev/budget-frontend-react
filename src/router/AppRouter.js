@@ -12,6 +12,9 @@ import { CategoryScreen } from '../components/category/CategoryScreen';
 import { OperationInflowList } from '../components/operation/OperationInflowList';
 import { OperationInflowNew } from '../components/operation/OperationInflowNew';
 import { OperationInflowUpdate } from '../components/operation/OperationInflowUpdate';
+import { OperationOutflowList } from '../components/operation/OperationOutflowList';
+import { OperationOutflowNew } from '../components/operation/OperationOutflowNew';
+import { OperationOutflowUpdate } from '../components/operation/OperationOutflowUpdate';
 import { OperationScreen } from '../components/operation/OperationScreen';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
@@ -48,7 +51,7 @@ export const AppRouter = () => {
 
                     <PrivateRoute
                         exact
-                        path="/operations-money-inflow"
+                        path="/operation-money-inflow"
                         component={ OperationInflowList }
                         isAuthenticated={ !!uid }
                     />
@@ -64,6 +67,27 @@ export const AppRouter = () => {
                         exact
                         path="/operation-money-inflow/update/:id"
                         component={ OperationInflowUpdate }
+                        isAuthenticated={ !!uid }
+                    />
+
+                    <PrivateRoute
+                        exact
+                        path="/operation-money-outflow"
+                        component={ OperationOutflowList }
+                        isAuthenticated={ !!uid }
+                    />
+
+                    <PrivateRoute
+                        exact
+                        path="/operation-money-outflow/new"
+                        component={ OperationOutflowNew }
+                        isAuthenticated={ !!uid }
+                    />
+
+                    <PrivateRoute
+                        exact
+                        path="/operation-money-outflow/update/:id"
+                        component={ OperationOutflowUpdate }
                         isAuthenticated={ !!uid }
                     />
 

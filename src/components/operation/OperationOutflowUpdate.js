@@ -1,44 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import React from 'react';
 
-import { operationStartUpdate } from '../../actions/operations';
 import { Navbar } from '../ui/Navbar';
 
-export const OperationInflowUpdate = () => {
-    const history = useHistory();
-    const dispatch = useDispatch();
-
-    const [operation, setOperation] = useState({
-        concept: '',
-        amount: '',
-        date: '',
-        type: ''
-    });
-
-    const operationupdate = useSelector(state => state.operation.operationupdate);
-
-    useEffect(() => {
-        setOperation(operationupdate);
-    }, [operationupdate]);
-
-    const onChangeForm = e => {
-        setOperation({
-            ...operation,
-            [e.target.name] : e.target.value
-        });
-    }
-
-    const { concept, amount, date, type } = operation;
-
-    const submitUpdateOperation = e => {
-        e.preventDefault();
-
-        dispatch(operationStartUpdate(operation));
-
-        history.push('/');
-    }
-
+export const OperationOutflowUpdate = () => {
     return (
         <>
             <Navbar />
@@ -48,21 +12,16 @@ export const OperationInflowUpdate = () => {
                         <div className="card">
                             <div className="card-body">
                                 <h2 className="text-center mb-4 font-weight-bold">
-                                    Update Operation Money Inflow
+                                    Update Operation Money Outflow
                                 </h2>
 
-                                <form
-                                    onSubmit={ submitUpdateOperation }
-                                >
+                                <form>
                                     <div className="form-group">
                                         <label>Concept</label>
                                         <input
                                             type="text"
                                             className="form-control"
                                             placeholder="Concept"
-                                            name="concept"
-                                            value={ concept }
-                                            onChange={ onChangeForm }
                                         />
                                     </div>
 
@@ -72,9 +31,6 @@ export const OperationInflowUpdate = () => {
                                             type="number"
                                             className="form-control"
                                             placeholder="Amount"
-                                            name="amount"
-                                            value={ amount }
-                                            onChange={ onChangeForm }
                                         />
                                     </div>
 
@@ -84,9 +40,6 @@ export const OperationInflowUpdate = () => {
                                             type="text"
                                             className="form-control"
                                             placeholder="Date"
-                                            name="date"
-                                            value={ date }
-                                            onChange={ onChangeForm }
                                         />
                                     </div>
 
@@ -96,9 +49,6 @@ export const OperationInflowUpdate = () => {
                                             type="text"
                                             className="form-control"
                                             placeholder="Type"
-                                            name="type"
-                                            value={ type }
-                                            onChange={ onChangeForm }
                                         />
                                     </div>
 
@@ -111,7 +61,7 @@ export const OperationInflowUpdate = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
         </>
     )
 }

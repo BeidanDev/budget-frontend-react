@@ -25,9 +25,18 @@ export const Navbar = () => {
                         activeClassName="active"
                         className="nav-item nav-link" 
                         exact
-                        to="/operations-money-inflow"
+                        to="/operation-money-inflow"
                     >
-                        Operation Money Inflow
+                        Money Inflow
+                    </NavLink>
+
+                    <NavLink 
+                        activeClassName="active"
+                        className="nav-item nav-link" 
+                        exact
+                        to="/operation-money-outflow"
+                    >
+                        Money Outflow
                     </NavLink>
 
                     <NavLink 
