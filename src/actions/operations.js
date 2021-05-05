@@ -9,7 +9,7 @@ export const operationStartAddNew = (operation) => {
         const { uid, name } = getState().auth;
 
         try {
-            const resp = await fetchConToken('operations', operation, 'POST');
+            const resp = await fetchConToken('operation', operation, 'POST');
             const body = await resp.json();
 
             if(body.ok) {
@@ -39,10 +39,21 @@ export const operationSetActive = (operation) => ({
 
 export const operationClearActive = () => ({ type: types.operationClearActive });
 
+export function getOperationEdit(operation) {
+    return (dispatch) => {
+        dispatch(getOperationEditAction(operation));
+    }
+}
+
+const getOperationEditAction = operation => ({
+    type: types.operationUpdateGet,
+    payload: operation
+})
+
 export const operationStartUpdate = (operation) => {
     return async(dispatch) => {
         try {
-            const resp = await fetchConToken(`operations/${ operation.id }`, operation, 'PUT');
+            const resp = await fetchConToken(`operation/${ operation.id }`, operation, 'PUT');
             const body = await resp.json();
 
             if(body.ok) {
@@ -88,7 +99,7 @@ export const operationStartLoading = () => {
             const resp = await fetchConToken('operation');
             const body = await resp.json();
 
-            const operations = prepareOperations(body.operation);
+            const operations = prepareOperations(body.operations);
             dispatch(operationLoaded(operations));
         } catch (error) {
             console.log(error);

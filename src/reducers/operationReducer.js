@@ -17,7 +17,8 @@ import { types } from "../types/types";
 
 const initialState = {
     operations: [],
-    activeOperation: null
+    activeOperation: null,
+    operationupdate: null
 };
 
 export const operationReducer = (state = initialState, action) => {
@@ -43,9 +44,16 @@ export const operationReducer = (state = initialState, action) => {
                 activeOperation: null
             }
 
+        case types.operationUpdateGet:
+            return {
+                ...state,
+                operationupdate: action.payload
+            }
+
         case types.operationUpdated:
             return {
                 ...state,
+                operationupdate: null,
                 operations: state.operations.map(
                     e => (e.id === action.payload.id) ? action.payload : e
                 )

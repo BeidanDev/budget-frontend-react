@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { operationSetActive, operationStartLoading } from '../../actions/operations';
 import { uiOpenModalInflow } from '../../actions/ui';
@@ -9,27 +10,6 @@ import { Navbar } from '../ui/Navbar';
 import { Table } from '../ui/Table';
 import { OperationInflowModal } from './OperationInflowModal';
 import { OperationOutflowModal } from './OperationOutflowModal';
-
-// const operations = [
-//     {
-//         id: '1',
-//         concept: 'Job',
-//         amount: '45000',
-//         date: moment().toDate()
-//     },
-//     {
-//         id: '2',
-//         concept: 'Job',
-//         amount: '45000',
-//         date: moment().toDate()
-//     },
-//     {
-//         id: '3',
-//         concept: 'Job',
-//         amount: '45000',
-//         date: moment().toDate()
-//     }
-// ];
 
 export const OperationScreen = () => {
     const dispatch = useDispatch();
@@ -52,18 +32,19 @@ export const OperationScreen = () => {
         <div>
             <Navbar />
             <div className="container">
-                <AddNewOperation 
+                {/* <AddNewOperation 
                         onClickInflow={ onClickInflow }
                         onSelectOperation={ onSelectOperation }
-                />
+                /> */}
                 {/* <button
                     className="btn btn-danger mb-2"
                 >
                     Money outflow
                 </button> */}
-                <Table />
-                <OperationInflowModal />
-                <OperationOutflowModal />
+                {/* <Table /> */}
+                {/* <OperationInflowModal /> */}
+                {/* <OperationOutflowModal /> */}
+                <h1>Home</h1>
             </div>
         </div>
     )

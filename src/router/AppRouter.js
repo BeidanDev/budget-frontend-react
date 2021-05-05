@@ -9,6 +9,9 @@ import {
 import { startChecking } from '../actions/auth';
 import { LoginScreen } from '../components/auth/LoginScreen';
 import { CategoryScreen } from '../components/category/CategoryScreen';
+import { OperationInflowList } from '../components/operation/OperationInflowList';
+import { OperationInflowNew } from '../components/operation/OperationInflowNew';
+import { OperationInflowUpdate } from '../components/operation/OperationInflowUpdate';
 import { OperationScreen } from '../components/operation/OperationScreen';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
@@ -40,6 +43,27 @@ export const AppRouter = () => {
                         exact
                         path="/"
                         component={ OperationScreen }
+                        isAuthenticated={ !!uid }
+                    />
+
+                    <PrivateRoute
+                        exact
+                        path="/operations-money-inflow"
+                        component={ OperationInflowList }
+                        isAuthenticated={ !!uid }
+                    />
+
+                    <PrivateRoute
+                        exact
+                        path="/operation-money-inflow/new"
+                        component={ OperationInflowNew }
+                        isAuthenticated={ !!uid }
+                    />
+
+                    <PrivateRoute
+                        exact
+                        path="/operation-money-inflow/update/:id"
+                        component={ OperationInflowUpdate }
                         isAuthenticated={ !!uid }
                     />
 

@@ -9,6 +9,9 @@ export const types = {
     operationAddNew: '[operation] Add new',
     operationClearActive: '[operation] Clear active operation',
     operationUpdate: '[operation] Operation updated',
+
+    operationUpdateGet: '[operation] Operation update get',
+
     operationDeleted: '[operation] Operation deleted',
     operationLoaded: '[operation] Operations loaded',
 
