@@ -29,23 +29,31 @@ export const OperationScreen = () => {
     }
 
     return (
-        <div>
+        <>
             <Navbar />
-            <div className="container">
-                {/* <AddNewOperation 
+            {/* <div className="container">
+                <AddNewOperation 
                         onClickInflow={ onClickInflow }
                         onSelectOperation={ onSelectOperation }
-                /> */}
-                {/* <button
+                />
+                <button
                     className="btn btn-danger mb-2"
                 >
                     Money outflow
-                </button> */}
-                {/* <Table /> */}
-                {/* <OperationInflowModal /> */}
-                {/* <OperationOutflowModal /> */}
+                </button>
+                <Table />
+                <OperationInflowModal />
+                <OperationOutflowModal />
                 <h1>Home</h1>
+            </div> */}
+            <div className="container">
+                <div className="jumbotron">
+                    <h1 className="display-4">Hello!</h1>
+                    <p className="lead">Welcome to personal budget management.</p>
+                    <hr className="my-4" />
+                    <p>Register your money inflow and money outflow operations.</p>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
