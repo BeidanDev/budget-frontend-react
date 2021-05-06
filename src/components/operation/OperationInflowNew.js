@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { operationStartAddNew } from '../../actions/operations';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { operationStartAddNew } from '../../actions/operations';
 import { Navbar } from '../ui/Navbar';
 
 export const OperationInflowNew = ({ history }) => {
@@ -9,8 +9,13 @@ export const OperationInflowNew = ({ history }) => {
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
     const [type, setType] = useState('Ingreso');
+    const [state, setState] = useState(1);
 
     const dispatch = useDispatch();
+
+    const { uid } = useSelector(state => state.auth);
+
+    const [user_id, setUser_Id] = useState(uid);
 
     const addOperation = operation => dispatch(operationStartAddNew(operation));
 
@@ -21,10 +26,12 @@ export const OperationInflowNew = ({ history }) => {
             concept,
             amount,
             date,
-            type
+            type,
+            state,
+            user_id
         });
 
-        history.push('/');
+        history.push('/operation-money-inflow');
     }
 
     return (
