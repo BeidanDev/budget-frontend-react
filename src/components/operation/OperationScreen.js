@@ -23,10 +23,10 @@ export const OperationScreen = () => {
         dispatch(uiOpenModalInflow());
     }
 
-    const onSelectOperation = (e) => {
-        dispatch(operationSetActive(e));
-        // dispatch(uiOpenModalInflow());
-    }
+    // const onSelectOperation = (e) => {
+    //     dispatch(operationSetActive(e));
+    //     // dispatch(uiOpenModalInflow());
+    // }
 
     return (
         <>

@@ -9,9 +9,14 @@ import { Operation } from './Operation';
 export const OperationInflowList = () => {
     const dispatch = useDispatch();
 
+    // useEffect(() => {
+    //     dispatch(operationStartLoading());
+    // }, [dispatch])
+
     useEffect(() => {
-        dispatch(operationStartLoading());
-    }, [dispatch])
+        const loadOperation = () => dispatch(operationStartLoading());
+        loadOperation();
+    }, [])
 
     const operations = useSelector(state => state.operation.operations);
 

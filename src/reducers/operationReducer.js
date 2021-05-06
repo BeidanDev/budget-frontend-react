@@ -17,18 +17,19 @@ import { types } from "../types/types";
 
 const initialState = {
     operations: [],
-    activeOperation: null,
-    operationupdate: null
+    // activeOperation: null,
+    operationupdate: null,
+    operationdelete: null
 };
 
 export const operationReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.operationSetActive:
-            return {
-                ...state,
-                activeOperation: action.payload
-            }
-        
+        // case types.operationSetActive:
+        //     return {
+        //         ...state,
+        //         activeOperation: action.payload
+        //     }
+
         case types.operationAddNew:
             return {
                 ...state,
@@ -38,13 +39,13 @@ export const operationReducer = (state = initialState, action) => {
                 ]
             }
 
-        case types.operationClearActive:
-            return {
-                ...state,
-                activeOperation: null
-            }
+        // case types.operationClearActive:
+        //     return {
+        //         ...state,
+        //         activeOperation: null
+        //     }
 
-        case types.operationUpdateGet:
+        case types.operationUpdateEdit:
             return {
                 ...state,
                 operationupdate: action.payload
@@ -58,14 +59,20 @@ export const operationReducer = (state = initialState, action) => {
                     e => (e.id === action.payload.id) ? action.payload : e
                 )
             }
+
+        case types.operationDeleteGet:
+            return {
+                ...state,
+                operationdelete: action.payload
+            }
         
         case types.operationDeleted:
             return {
                 ...state,
                 operations: state.operations.filter(
-                    e => (e.id !== state.activeOperation.id)
+                    e => (e.id !== state.operationdelete)
                 ),
-                activeOperation: null
+                operationdelete: null
             }
 
         case types.operationLoaded:
@@ -73,11 +80,11 @@ export const operationReducer = (state = initialState, action) => {
                 ...state,
                 operations: [...action.payload]
             }
-        
+
             case types.operationLogout:
                 return {
                     ...initialState
-                }
+            }
 
         default:
             return state;

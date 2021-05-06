@@ -5,7 +5,7 @@ import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 
 import { uiCloseModalInflow } from '../../actions/ui';
-import { operationClearActive, operationStartAddNew, operationStartUpdate } from '../../actions/operations';
+// import { operationClearActive, operationStartAddNew, operationStartUpdate } from '../../actions/operations';
 
 const customStyles = {
     content : {
@@ -57,7 +57,7 @@ export const OperationInflowModal = () => {
 
     const closeModal = () => {
         dispatch(uiCloseModalInflow());
-        dispatch(operationClearActive());
+        // dispatch(operationClearActive());
         setFormValues(initOperation);
     }
 
@@ -81,9 +81,9 @@ export const OperationInflowModal = () => {
         }
         
         if(activeOperation) {
-            dispatch(operationStartUpdate(formValues));
+            // dispatch(operationStartUpdate(formValues));
         } else {
-            dispatch(operationStartAddNew(formValues));
+            // dispatch(operationStartAddNew(formValues));
         }
 
         setConceptValid(true);

@@ -32,12 +32,12 @@ const operationAddNew = (operation) => ({
     payload: operation
 });
 
-export const operationSetActive = (operation) => ({
-    type: types.operationSetActive,
-    payload: operation
-});
+// export const operationSetActive = (operation) => ({
+//     type: types.operationSetActive,
+//     payload: operation
+// });
 
-export const operationClearActive = () => ({ type: types.operationClearActive });
+// export const operationClearActive = () => ({ type: types.operationClearActive });
 
 export function getOperationEdit(operation) {
     return (dispatch) => {
@@ -46,7 +46,7 @@ export function getOperationEdit(operation) {
 }
 
 const getOperationEditAction = operation => ({
-    type: types.operationUpdateGet,
+    type: types.operationUpdateEdit,
     payload: operation
 })
 
@@ -72,12 +72,13 @@ const operationUpdated = (operation) => ({
     payload: operation
 });
 
-export const operationStartDelete = () => {
-    return async(dispatch, getState) => {
-        const { id } = getState().operation.activeOperation;
+export const operationStartDelete = (id) => {
+    return async(dispatch/*, getState*/) => {
+        // const { id } = getState().operation.activeOperation;
+        dispatch(operationDeleteGet(id));
 
         try {
-            const resp = await fetchConToken(`operations/${ id }`, {}, 'DELETE');
+            const resp = await fetchConToken(`operation/${ id }`, {}, 'DELETE');
             const body = await resp.json();
 
             if(body.ok) {
@@ -90,6 +91,11 @@ export const operationStartDelete = () => {
         }
     }
 }
+
+const operationDeleteGet = id => ({
+    type: types.operationDeleteGet,
+    payload: id
+})
 
 const operationDeleted = () => ({ type: types.operationDeleted });
 

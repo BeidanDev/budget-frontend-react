@@ -36,7 +36,9 @@ export const OperationInflowUpdate = () => {
 
         dispatch(operationStartUpdate(operation));
 
-        history.push('/');
+        history.push('/operation-money-inflow');
+
+        // window.location.reload();
     }
 
     return (
