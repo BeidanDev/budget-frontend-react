@@ -85,18 +85,6 @@ export const OperationInflowNew = ({ history }) => {
                                         />
                                     </div>
 
-                                    <div className="form-group">
-                                        <label>Type</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Type"
-                                            name="type"
-                                            value={ type }
-                                            onChange={e => setType(e.target.value)}
-                                        />
-                                    </div>
-
                                     <button 
                                         type="submit"
                                         className="btn btn-primary font-weight-bold text-uppercase d-block w-100 mt-5"

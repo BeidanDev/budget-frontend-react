@@ -52,7 +52,7 @@ export const OperationOutflowUpdate = () => {
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         </>
     )
 }
