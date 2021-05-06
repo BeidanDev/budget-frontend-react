@@ -40,7 +40,7 @@ export const OperationInflowNew = ({ history }) => {
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-8">
-                        <div className="card">
+                        <div className="card mb-4">
                             <div className="card-body">
                                 <h2 className="text-center mb-4 font-weight-bold">
                                     New Operation Money Inflow
@@ -99,7 +99,7 @@ export const OperationInflowNew = ({ history }) => {
 
                                     <button 
                                         type="submit"
-                                        className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+                                        className="btn btn-primary font-weight-bold text-uppercase d-block w-100 mt-5"
                                     >Add money inflow</button>
                                 </form>
                             </div>

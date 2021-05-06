@@ -46,7 +46,7 @@ export const OperationInflowUpdate = () => {
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-8">
-                        <div className="card">
+                        <div className="card mb-4">
                             <div className="card-body">
                                 <h2 className="text-center mb-4 font-weight-bold">
                                     Update Operation Money Inflow
@@ -93,7 +93,7 @@ export const OperationInflowUpdate = () => {
 
                                     <button 
                                         type="submit"
-                                        className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+                                        className="btn btn-primary font-weight-bold text-uppercase d-block w-100 mt-5"
                                     >Save changes</button>
                                 </form>
                             </div>
