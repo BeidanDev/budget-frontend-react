@@ -12,8 +12,7 @@ export const OperationInflowUpdate = () => {
     const [operation, setOperation] = useState({
         concept: '',
         amount: '',
-        date: '',
-        type: ''
+        date: ''
     });
 
     const operationupdate = useSelector(state => state.operation.operationupdate);
@@ -29,7 +28,7 @@ export const OperationInflowUpdate = () => {
         });
     }
 
-    const { concept, amount, date, type } = operation;
+    const { concept, amount, date } = operation;
 
     const submitUpdateOperation = e => {
         e.preventDefault();
@@ -88,18 +87,6 @@ export const OperationInflowUpdate = () => {
                                             placeholder="Date"
                                             name="date"
                                             value={ date }
-                                            onChange={ onChangeForm }
-                                        />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label>Type</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Type"
-                                            name="type"
-                                            value={ type }
                                             onChange={ onChangeForm }
                                         />
                                     </div>
