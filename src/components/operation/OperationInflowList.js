@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -9,22 +9,11 @@ import { Operation } from './Operation';
 export const OperationInflowList = () => {
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(operationStartLoading());
-    // }, [dispatch])
-
     useEffect(() => {
-        const loadOperation = () => dispatch(operationStartLoading());
-        loadOperation();
+        dispatch(operationStartLoading());
     }, [])
 
     const operations = useSelector(state => state.operation.operations);
-
-    // const listItems = operations.map((operation) => 
-    //     operation.type === 'Ingreso' && console.log(operation)
-    // )
-
-    // console.log(listItems);
 
     return (
         <>

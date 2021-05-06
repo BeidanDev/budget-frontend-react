@@ -1,8 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
+import { operationStartUpdate } from '../../actions/operations';
 import { Navbar } from '../ui/Navbar';
 
 export const OperationOutflowUpdate = () => {
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const [operation, setOperation] = useState({
+        concept: '',
+        amount: '',
+        date: ''
+    });
+
+    const operationupdate = useSelector(state => state.operation.operationupdate);
+
+    useEffect(() => {
+        setOperation(operationupdate);
+    }, [operationupdate]);
+
+    const onChangeForm = e => {
+        setOperation({
+            ...operation,
+            [e.target.name] : e.target.value
+        });
+    }
+
+    const { concept, amount, date } = operation;
+
+    const submitUpdateOperation = e => {
+        e.preventDefault();
+
+        dispatch(operationStartUpdate(operation));
+
+        history.push('/operation-money-outflow');
+
+        // window.location.reload();
+    }
+
     return (
         <>
             <Navbar />
@@ -15,13 +52,18 @@ export const OperationOutflowUpdate = () => {
                                     Update Operation Money Outflow
                                 </h2>
 
-                                <form>
+                                <form
+                                    onSubmit={ submitUpdateOperation }
+                                >
                                     <div className="form-group">
                                         <label>Concept</label>
                                         <input
                                             type="text"
                                             className="form-control"
                                             placeholder="Concept"
+                                            name="concept"
+                                            value={ concept }
+                                            onChange={ onChangeForm }
                                         />
                                     </div>
 
@@ -31,6 +73,9 @@ export const OperationOutflowUpdate = () => {
                                             type="number"
                                             className="form-control"
                                             placeholder="Amount"
+                                            name="amount"
+                                            value={ amount }
+                                            onChange={ onChangeForm }
                                         />
                                     </div>
 
@@ -40,6 +85,9 @@ export const OperationOutflowUpdate = () => {
                                             type="text"
                                             className="form-control"
                                             placeholder="Date"
+                                            name="date"
+                                            value={ date }
+                                            onChange={ onChangeForm }
                                         />
                                     </div>
 

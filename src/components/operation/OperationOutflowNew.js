@@ -1,8 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { operationStartAddNew } from '../../actions/operations';
 import { Navbar } from '../ui/Navbar';
 
-export const OperationOutflowNew = () => {
+export const OperationOutflowNew = ({ history }) => {
+    const [concept, setConcept] = useState('');
+    const [amount, setAmount] = useState('');
+    const [date, setDate] = useState('');
+    const [type, setType] = useState('Egreso');
+    const [state, setState] = useState(1);
+
+    const dispatch = useDispatch();
+
+    const { uid } = useSelector(state => state.auth);
+
+    const [user_id, setUser_Id] = useState(uid);
+
+    const addOperation = operation => dispatch(operationStartAddNew(operation));
+
+    const submitNewOperation = e => {
+        e.preventDefault();
+
+        addOperation({
+            concept,
+            amount,
+            date,
+            type,
+            state,
+            user_id
+        });
+
+        history.push('/operation-money-outflow');
+    }
+
     return (
         <>
             <Navbar />
@@ -15,13 +46,18 @@ export const OperationOutflowNew = () => {
                                     New Operation Money Outflow
                                 </h2>
 
-                                <form>
+                                <form
+                                    onSubmit={ submitNewOperation }
+                                >
                                     <div className="form-group">
                                         <label>Concept</label>
                                         <input
                                             type="text"
                                             className="form-control"
                                             placeholder="Concept"
+                                            name="concept"
+                                            value={ concept }
+                                            onChange={e => setConcept(e.target.value)}
                                         />
                                     </div>
 
@@ -31,6 +67,9 @@ export const OperationOutflowNew = () => {
                                             type="number"
                                             className="form-control"
                                             placeholder="Amount"
+                                            name="amount"
+                                            value={ amount }
+                                            onChange={e => setAmount( Number(e.target.value) )}
                                         />
                                     </div>
 
@@ -40,6 +79,9 @@ export const OperationOutflowNew = () => {
                                             type="text"
                                             className="form-control"
                                             placeholder="Date"
+                                            name="date"
+                                            value={ date }
+                                            onChange={e => setDate(e.target.value)}
                                         />
                                     </div>
 

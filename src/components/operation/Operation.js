@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
 
-import { getOperationEdit, operationStartDelete } from '../../actions/operations';
+import { getOperationEdit, operationStartDelete, operationStartLoading } from '../../actions/operations';
 
 export const Operation = ({ operation }) => {
-    const { concept, amount, date, id} = operation;
+    const { concept, amount, date, id, type } = operation;
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -29,8 +29,13 @@ export const Operation = ({ operation }) => {
     }
 
     const redirectEdit = operation => {
-        dispatch(getOperationEdit(operation));
-        history.push(`/operation-money-inflow/update/${ operation.id }`);
+        if(type === 'Ingreso') {
+            dispatch(getOperationEdit(operation));
+            history.push(`/operation-money-inflow/update/${ operation.id }`);
+        } else {
+            dispatch(getOperationEdit(operation));
+            history.push(`/operation-money-outflow/update/${ operation.id }`);
+        }
     }
 
     return (

@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { operationStartLoading } from '../../actions/operations';
 import { Navbar } from '../ui/Navbar';
+import { Operation } from './Operation';
 
 export const OperationOutflowList = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(operationStartLoading());
+    }, [])
+
+    const operations = useSelector(state => state.operation.operations);
+
     return (
         <>
             <Navbar />
@@ -25,17 +36,14 @@ export const OperationOutflowList = () => {
                             </tr>
                     </thead>
                     <tbody>
-                        {/* { 
-                            operations.map(operation => (
-                                <Operation
-                                        key={ operation.id }
-                                        operation={ operation }
-                                />
-                            ))
-                        } */}
+                    {
+                        operations.map(operation => (
+                            operation.type === 'Egreso' && <Operation key={ operation.id } operation={ operation } />
+                        ))
+                    }
                     </tbody>
                 </table>
-            </div>  
+            </div>
         </>
     )
 }
