@@ -2,7 +2,6 @@ import Swal from "sweetalert2";
 
 import { types } from "../types/types";
 import { fetchConToken } from '../helpers/fetch';
-import { prepareOperations } from "../helpers/prepareOperations";
 
 export const operationStartAddNew = (operation) => {
     return async(dispatch, getState) => {
@@ -105,8 +104,7 @@ export const operationStartLoading = () => {
             const resp = await fetchConToken('operation');
             const body = await resp.json();
 
-            const operations = prepareOperations(body.operations);
-            dispatch(operationLoaded(operations));
+            dispatch(operationLoaded(body.operations));
         } catch (error) {
             console.log(error);
         }
