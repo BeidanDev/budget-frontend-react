@@ -31,13 +31,6 @@ const operationAddNew = (operation) => ({
     payload: operation
 });
 
-// export const operationSetActive = (operation) => ({
-//     type: types.operationSetActive,
-//     payload: operation
-// });
-
-// export const operationClearActive = () => ({ type: types.operationClearActive });
-
 export function getOperationEdit(operation) {
     return (dispatch) => {
         dispatch(getOperationEditAction(operation));
@@ -67,13 +60,12 @@ export const operationStartUpdate = (operation) => {
 }
 
 const operationUpdated = (operation) => ({
-    type: types.operationUpdate,
+    type: types.operationUpdated,
     payload: operation
 });
 
-export const operationStartDelete = (id) => {
-    return async(dispatch/*, getState*/) => {
-        // const { id } = getState().operation.activeOperation;
+export const operationStartDelete = id => {
+    return async(dispatch) => {
         dispatch(operationDeleteGet(id));
 
         try {

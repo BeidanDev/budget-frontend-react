@@ -1,35 +1,13 @@
-// import moment from "moment";
-import { types } from "../types/types";
-
-// const initialState = {
-//     operations: [{
-//         id: new Date().getTime(),
-//         concept: 'Job',
-//         amount: '45000',
-//         date: moment().toDate(),
-//         user: {
-//             id: '1',
-//             name: 'Franco'
-//         }
-//     }],
-//     activeOperation: null
-// };
+import { types } from '../types/types';
 
 const initialState = {
     operations: [],
-    // activeOperation: null,
     operationupdate: null,
     operationdelete: null
 };
 
 export const operationReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case types.operationSetActive:
-        //     return {
-        //         ...state,
-        //         activeOperation: action.payload
-        //     }
-
         case types.operationAddNew:
             return {
                 ...state,
@@ -38,12 +16,6 @@ export const operationReducer = (state = initialState, action) => {
                     action.payload
                 ]
             }
-
-        // case types.operationClearActive:
-        //     return {
-        //         ...state,
-        //         activeOperation: null
-        //     }
 
         case types.operationUpdateEdit:
             return {
@@ -81,10 +53,10 @@ export const operationReducer = (state = initialState, action) => {
                 operations: [...action.payload]
             }
 
-            case types.operationLogout:
-                return {
-                    ...initialState
-            }
+        case types.operationLogout:
+            return {
+                ...initialState
+        }
 
         default:
             return state;

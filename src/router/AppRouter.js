@@ -8,7 +8,9 @@ import {
 
 import { startChecking } from '../actions/auth';
 import { LoginScreen } from '../components/auth/LoginScreen';
-import { CategoryScreen } from '../components/category/CategoryScreen';
+import { CategoryList } from '../components/category/CategoryList';
+import { CategoryNew } from '../components/category/CategoryNew';
+import { CategoryUpdate } from '../components/category/CategoryUpdate';
 import { OperationInflowList } from '../components/operation/OperationInflowList';
 import { OperationInflowNew } from '../components/operation/OperationInflowNew';
 import { OperationInflowUpdate } from '../components/operation/OperationInflowUpdate';
@@ -94,7 +96,21 @@ export const AppRouter = () => {
                     <PrivateRoute
                         exact
                         path="/category"
-                        component={ CategoryScreen }
+                        component={ CategoryList }
+                        isAuthenticated={ !!uid }
+                    />
+
+                    <PrivateRoute
+                        exact
+                        path="/category/new"
+                        component={ CategoryNew }
+                        isAuthenticated={ !!uid }
+                    />
+
+                    <PrivateRoute
+                        exact
+                        path="/category/update/:id"
+                        component={ CategoryUpdate }
                         isAuthenticated={ !!uid }
                     />
 

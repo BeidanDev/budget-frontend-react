@@ -1,51 +1,49 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { categoryStartLoading } from '../../actions/category';
 
-import { operationStartLoading } from '../../actions/operations';
 import { Navbar } from '../ui/Navbar';
-import { Operation } from './Operation';
+import { Category } from './Category';
 
-export const OperationInflowList = () => {
+export const CategoryList = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(operationStartLoading());
-    }, [])
+        dispatch(categoryStartLoading());
+    }, []);
 
-    const operations = useSelector(state => state.operation.operations);
+    const categories = useSelector(state => state.category.categories);
 
     return (
-        <>
+        <div>
             <Navbar />
             <div className="container">
-                <h2>List Operation Money Inflow</h2>
+                <h2>List Category</h2>
 
                 <Link
-                    to={"/operation-money-inflow/new"}
+                    to={"/category/new"}
                     className="btn btn-success"
                 >
-                    Add money inflow
+                    Add category
                 </Link>
 
                 <table className="table table-striped mt-2 mb-2">
                     <thead className="bg-primary table-dark">
                             <tr>
-                                <th scope="col">Concept</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Date</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Action</th>
                             </tr>
                     </thead>
                     <tbody>
                         {
-                            operations.map(operation => (
-                                operation.type === 'Ingreso' && <Operation key={ operation.id } operation={ operation } />
+                            categories.map(category => (
+                                <Category key={ category.id } category={ category } />
                             ))
                         }
                     </tbody>
                 </table>
             </div>
-        </>
+        </div>
     )
 }
