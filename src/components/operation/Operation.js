@@ -12,18 +12,25 @@ export const Operation = ({ operation }) => {
     const history = useHistory();
 
     const confirmDeleteOperation = id => {
-        Swal.fire({
-            title: 'You are sure?',
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger mr-3'
+            },
+            buttonsStyling: false
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
             text: "An operation that is deleted cannot be recovered",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
             confirmButtonText: 'Accept',
-            cancelButtonText: 'Cancel'
+            cancelButtonText: 'Cancel',
+            reverseButtons: true
         }).then((result) => {
             if (result.value) {
-                dispatch( operationStartDelete(id) );
+                dispatch(operationStartDelete(id));
             }
         });
     }
