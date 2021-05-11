@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
+
 import { categoryStartDelete, getCategoryEdit } from '../../actions/category';
 
 export const Category = ({ category }) => {

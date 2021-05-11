@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { categoryStartLoading } from '../../actions/category';
 
 import { operationStartLoading } from '../../actions/operations';
 import { Navbar } from '../ui/Navbar';
@@ -11,7 +12,8 @@ export const OperationOutflowList = () => {
 
     useEffect(() => {
         dispatch(operationStartLoading());
-    }, [])
+        dispatch(categoryStartLoading());
+    }, []);
 
     const operations = useSelector(state => state.operation.operations);
 

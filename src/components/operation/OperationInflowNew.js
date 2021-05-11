@@ -29,7 +29,7 @@ export const OperationInflowNew = ({ history }) => {
         e.preventDefault();
 
         if(!moment(date, 'YYYY-M-D', true).isValid()) {
-            return Swal.fire('Error', 'La fecha es invalida, tiene que ser formato (YYYY-M-D) Año-Mes-Día. Por ejemplo (2021-5-8) o (2021-11-15)', 'error');
+            return Swal.fire('Error', 'The date is invalid, it has to be formatted (YYYY-M-D) Year-Month-Day. For example (2021-5-18) o (2021-11-7)', 'error');
         }
 
         addOperation({

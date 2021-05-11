@@ -20,16 +20,24 @@ export const OperationOutflowNew = ({ history }) => {
     const dispatch = useDispatch();
 
     const { uid } = useSelector(state => state.auth);
+    const categories = useSelector(state => state.category.categories);
 
     const [user_id, setUser_Id] = useState(uid);
+    const [category_id, setCategory_Id] = useState(-1);
 
     const addOperation = operation => dispatch(operationStartAddNew(operation));
+
+    const handleLoadCategories = e => {
+        const option = e.target.value;
+        console.log(option);
+        setCategory_Id(option);
+    }
 
     const submitNewOperation = e => {
         e.preventDefault();
 
         if(!moment(date, 'YYYY-M-D', true).isValid()) {
-            return Swal.fire('Error', 'La fecha es invalida, tiene que ser formato (YYYY-M-D) Año-Mes-Día. Por ejemplo (2021-5-8) o (2021-11-15)', 'error');
+            return Swal.fire('Error', 'The date is invalid, it has to be formatted (YYYY-M-D) Year-Month-Day. For example (2021-5-18) o (2021-11-7)', 'error');
         }
 
         addOperation({
@@ -38,7 +46,8 @@ export const OperationOutflowNew = ({ history }) => {
             date,
             type,
             state,
-            user_id
+            user_id,
+            category_id
         });
 
         history.push('/operation-money-outflow');
@@ -93,6 +102,28 @@ export const OperationOutflowNew = ({ history }) => {
                                             value={ date }
                                             onChange={e => setDate(e.target.value)}
                                         />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Category</label>
+                                            <select
+                                                className="form-control"
+                                                id="exampleFormControlSelect1"
+                                                name="category_id"
+                                                onClick={ handleLoadCategories }
+                                            >
+                                                <option value={ -1 }>Select a category:</option>
+                                                {
+                                                    categories.map(category => 
+                                                        <option 
+                                                            key={ category.id } 
+                                                            value={ category.id }
+                                                        >
+                                                            { category.name }
+                                                        </option>
+                                                    )
+                                                }
+                                            </select>
                                     </div>
 
                                     <button 
