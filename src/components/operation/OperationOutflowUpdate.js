@@ -12,10 +12,12 @@ export const OperationOutflowUpdate = () => {
     const [operation, setOperation] = useState({
         concept: '',
         amount: '',
-        date: ''
+        date: '',
+        category_id: ''
     });
 
     const operationupdate = useSelector(state => state.operation.operationupdate);
+    const categories = useSelector(state => state.category.categories);
 
     useEffect(() => {
         setOperation(operationupdate);
@@ -28,7 +30,7 @@ export const OperationOutflowUpdate = () => {
         });
     }
 
-    const { concept, amount, date } = operation;
+    const { concept, amount, date, category_id } = operation;
 
     const submitUpdateOperation = e => {
         e.preventDefault();
@@ -89,6 +91,29 @@ export const OperationOutflowUpdate = () => {
                                             value={ date }
                                             onChange={ onChangeForm }
                                         />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Category</label>
+                                            <select
+                                                className="form-control"
+                                                id="exampleFormControlSelect1"
+                                                name="category_id"
+                                                onChange={ onChangeForm }
+                                            >
+                                                <option value={ category_id }>{ category_id }</option>
+                                                {
+                                                    categories.map(category =>
+                                                        category.name !== category_id &&
+                                                        <option 
+                                                            key={ category.id } 
+                                                            value={ category.name }
+                                                        >
+                                                            { category.name }
+                                                        </option>
+                                                    )
+                                                }
+                                            </select>
                                     </div>
 
                                     <button 

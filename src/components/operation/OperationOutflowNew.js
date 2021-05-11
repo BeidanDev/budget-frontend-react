@@ -23,7 +23,7 @@ export const OperationOutflowNew = ({ history }) => {
     const categories = useSelector(state => state.category.categories);
 
     const [user_id, setUser_Id] = useState(uid);
-    const [category_id, setCategory_Id] = useState(-1);
+    const [category_id, setCategory_Id] = useState('Select a category');
 
     const addOperation = operation => dispatch(operationStartAddNew(operation));
 
@@ -112,12 +112,12 @@ export const OperationOutflowNew = ({ history }) => {
                                                 name="category_id"
                                                 onClick={ handleLoadCategories }
                                             >
-                                                <option value={ -1 }>Select a category:</option>
+                                                <option value={ 'Select a category' }>Select a category</option>
                                                 {
                                                     categories.map(category => 
                                                         <option 
                                                             key={ category.id } 
-                                                            value={ category.id }
+                                                            value={ category.name }
                                                         >
                                                             { category.name }
                                                         </option>
