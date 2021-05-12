@@ -29,7 +29,7 @@ export const CategoryList = () => {
                 </Link>
 
                 <table className="table table-striped mt-2 mb-2">
-                    <thead className="bg-primary table-dark">
+                    <thead className="thead-dark">
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Action</th>

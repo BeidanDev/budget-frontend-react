@@ -12,6 +12,7 @@ export const CategoryUpdate = () => {
     const [category, setCategory] = useState({
         name: ''
     });
+    const [validText, setValidText] = useState(true);
 
     const categoryupdate = useSelector(state => state.category.categoryupdate);
 
@@ -30,6 +31,10 @@ export const CategoryUpdate = () => {
 
     const submitUpdateCategory = e => {
         e.preventDefault();
+
+        if(name.trim().length < 3) {
+            return setValidText(false);
+        }
 
         dispatch(categoryStartUpdate(category));
 
@@ -57,12 +62,13 @@ export const CategoryUpdate = () => {
                                         <label>Name</label>
                                         <input
                                             type="text"
-                                            className="form-control"
+                                            className={ `form-control ${ !validText && 'is-invalid' }` }
                                             placeholder="Name"
                                             name="name"
                                             value={ name }
                                             onChange={ onChangeForm }
                                         />
+                                        { !validText ? <span className="alert-span">Name more of two letters</span> : null }
                                     </div>
 
                                     <button 

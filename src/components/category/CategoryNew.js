@@ -7,6 +7,7 @@ import { Navbar } from '../ui/Navbar';
 export const CategoryNew = ({ history }) => {
   const [name, setName] = useState('');
   const [state, setState] = useState(1);
+  const [validText, setValidText] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -18,6 +19,10 @@ export const CategoryNew = ({ history }) => {
 
   const submitNewCategory = e => {
     e.preventDefault();
+
+    if(name.trim().length < 3) {
+        return setValidText(false);
+    }
 
     addCategory({
       name,
@@ -47,12 +52,13 @@ export const CategoryNew = ({ history }) => {
                                       <label>Name</label>
                                       <input
                                           type="text"
-                                          className="form-control"
+                                          className={ `form-control ${ !validText && 'is-invalid' }` }
                                           placeholder="Name"
                                           name="name"
                                           value={ name }
                                           onChange={e => setName(e.target.value)}
                                       />
+                                      { !validText ? <span className="alert-span">Name more of two letters</span> : null }
                                   </div>
 
                                   <button 
