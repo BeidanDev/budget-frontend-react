@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { categoryStartAddNew } from '../../actions/category';
 
+import { categoryStartAddNew } from '../../actions/category';
 import { Navbar } from '../ui/Navbar';
 
 export const CategoryNew = ({ history }) => {
   const [name, setName] = useState('');
-  const [state, setState] = useState(1);
+  const [state] = useState(1);
   const [validText, setValidText] = useState(true);
 
   const dispatch = useDispatch();
 
   const { uid } = useSelector(state => state.auth);
 
-  const [user_id, setUser_id] = useState(uid);
+  const [user_id] = useState(uid);
 
   const addCategory = category => dispatch(categoryStartAddNew(category));
 
@@ -56,9 +56,9 @@ export const CategoryNew = ({ history }) => {
                                           placeholder="Name"
                                           name="name"
                                           value={ name }
-                                          onChange={e => setName(e.target.value)}
+                                          onChange={ e => setName(e.target.value) }
                                       />
-                                      { !validText ? <span className="alert-span">Name more of two letters</span> : null }
+                                      { !validText ? <span className="alert-span">Name more than two letters</span> : null }
                                   </div>
 
                                   <button 

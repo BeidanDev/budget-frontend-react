@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { categoryStartLoading } from '../../actions/category';
 
+import { categoryStartLoading } from '../../actions/category';
 import { operationStartLoading } from '../../actions/operations';
 import { Navbar } from '../ui/Navbar';
 import { Operation } from './Operation';
@@ -13,7 +13,7 @@ export const OperationOutflowList = () => {
     useEffect(() => {
         dispatch(operationStartLoading());
         dispatch(categoryStartLoading());
-    }, []);
+    }, [dispatch]);
 
     const operations = useSelector(state => state.operation.operations);
 
@@ -23,7 +23,7 @@ export const OperationOutflowList = () => {
             <div className="container">
                 <h2>List Operation Money Outflow</h2>
                 <Link
-                    to={"/operation-money-outflow/new"}
+                    to={ "/operation-money-outflow/new" }
                     className="btn btn-danger"
                 >
                     Add money outflow

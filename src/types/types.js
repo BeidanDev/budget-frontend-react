@@ -1,7 +1,4 @@
 export const types = {
-    uiOpenModalInflow: '[ui] Open modal inflow',
-    uiCloseModalInflow: '[ui] Close modal inflow',
-
     operationLogout: '[operation] Logout operation',
     operationStartAddNew: '[operation] Start add new',
     operationAddNew: '[operation] Add new',

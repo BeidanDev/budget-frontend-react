@@ -1,6 +1,6 @@
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 
-import { types } from "../types/types";
+import { types } from '../types/types';
 import { fetchConToken } from '../helpers/fetch';
 
 export const operationStartAddNew = (operation) => {

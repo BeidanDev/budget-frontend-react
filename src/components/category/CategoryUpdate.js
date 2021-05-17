@@ -68,7 +68,7 @@ export const CategoryUpdate = () => {
                                             value={ name }
                                             onChange={ onChangeForm }
                                         />
-                                        { !validText ? <span className="alert-span">Name more of two letters</span> : null }
+                                        { !validText ? <span className="alert-span">Name more than two letters</span> : null }
                                     </div>
 
                                     <button 

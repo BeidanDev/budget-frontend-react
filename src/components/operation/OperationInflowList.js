@@ -11,7 +11,7 @@ export const OperationInflowList = () => {
 
     useEffect(() => {
         dispatch(operationStartLoading());
-    }, [])
+    }, [dispatch]);
 
     const operations = useSelector(state => state.operation.operations);
 
@@ -22,7 +22,7 @@ export const OperationInflowList = () => {
                 <h2>List Operation Money Inflow</h2>
 
                 <Link
-                    to={"/operation-money-inflow/new"}
+                    to={ "/operation-money-inflow/new" }
                     className="btn btn-success"
                 >
                     Add money inflow

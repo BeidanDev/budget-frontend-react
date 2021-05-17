@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+
 import { startLogin, startRegister } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
 
@@ -9,8 +10,6 @@ export const LoginScreen = () => {
     const dispatch = useDispatch();
 
     const [formLoginValues, handleLoginInputChange] = useForm({
-        // lEmail: 'franco@hotmail.com',
-        // lPassword: '123456'
         lEmail: '',
         lPassword: ''
     });
@@ -18,9 +17,6 @@ export const LoginScreen = () => {
     const { lEmail, lPassword } = formLoginValues;
 
     const [formRegisterValues, handleRegisterInputChange] = useForm({
-        // rName: 'Fido',
-        // rEmail: 'fido@gmail.com',
-        // rPassword: '123456'
         rName: '',
         rEmail: '',
         rPassword: ''

@@ -1,6 +1,7 @@
+import Swal from 'sweetalert2';
+
 import { types } from '../types/types';
 import { fetchConToken } from '../helpers/fetch';
-import Swal from 'sweetalert2';
 
 export const categoryStartLoading = () => {
     return async(dispatch) => {

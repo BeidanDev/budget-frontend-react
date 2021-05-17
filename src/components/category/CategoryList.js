@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { categoryStartLoading } from '../../actions/category';
 
+import { categoryStartLoading } from '../../actions/category';
 import { Navbar } from '../ui/Navbar';
 import { Category } from './Category';
 
@@ -11,7 +11,7 @@ export const CategoryList = () => {
 
     useEffect(() => {
         dispatch(categoryStartLoading());
-    }, []);
+    }, [dispatch]);
 
     const categories = useSelector(state => state.category.categories);
 
@@ -22,7 +22,7 @@ export const CategoryList = () => {
                 <h2>List Category</h2>
 
                 <Link
-                    to={"/category/new"}
+                    to={ "/category/new" }
                     className="btn btn-success"
                 >
                     Add category

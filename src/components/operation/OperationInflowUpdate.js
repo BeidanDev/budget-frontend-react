@@ -38,7 +38,7 @@ export const OperationInflowUpdate = () => {
         e.preventDefault();
 
         if(!moment(date, 'YYYY-M-D', true).isValid()) {
-            return Swal.fire('Error', 'The date is invalid, it has to be formatted (YYYY-M-D) Year-Month-Day. For example (2021-5-18) o (2021-11-7)', 'error');
+            return Swal.fire('Error', 'The date is invalid, it has to be formatted (YYYY-M-D) Year-Month-Day. For example (2021-5-18) or (2021-11-7)', 'error');
         }
 
         if(concept.trim().length < 3) {
@@ -81,7 +81,7 @@ export const OperationInflowUpdate = () => {
                                             value={ concept }
                                             onChange={ onChangeForm }
                                         />
-                                        { !validText ? <span className="alert-span">Concept more of two letters</span> : null }
+                                        { !validText ? <span className="alert-span">Concept more than two letters</span> : null }
                                     </div>
 
                                     <div className="form-group">
@@ -94,7 +94,7 @@ export const OperationInflowUpdate = () => {
                                             value={ amount }
                                             onChange={ onChangeForm }
                                         />
-                                        { !validNumber ? <span className="alert-span">Amount greater a zero</span> : null }
+                                        { !validNumber ? <span className="alert-span">Amount greater than zero</span> : null }
                                     </div>
 
                                     <div className="form-group">
