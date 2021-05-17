@@ -12,4 +12,4 @@ Ejecutar ```npm install``` para reconstruir los módulos de Node.
 
 2: Luego en React con ```npm start```.
 
-Es obligatorio tener la API levantado para poder iniciar la app en React.
+Es obligatorio tener la API levantado para iniciar la app en React.
